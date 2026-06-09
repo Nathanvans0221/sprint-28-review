@@ -30178,10 +30178,6 @@ function navlink(href, label){
 
 function overviewSection(){
   return el('section', {id:'overview', class:'max-w-7xl mx-auto px-6 py-10'},
-    el('div', {class:'sf-eyebrow mb-2'}, 'The Arc'),
-    el('h2', {class:'sf-h2 text-3xl mb-3'}, 'Execute Order 66 — in production'),
-    el('p', {class:'mb-7 max-w-4xl', style:'color:#3F4948; font-weight:300;'},
-      `${DATA.metrics.merged.toLocaleString()} PRs merged in three weeks — Silver Fern's largest sprint on record, and the clearest proof yet of Execute Order 66: a large share shipped by the Product team's auto-dev pipeline and autonomous agents, not in spite of them. ${DATA.metrics.active} still in flight. The big arcs from S28:`),
     el('div', {class:'grid md:grid-cols-2 lg:grid-cols-3 gap-4'},
       arcCard('FULFILL', 'Fulfill Orders go server-side', 'The Orders grid moved to AG Grid Server-Side Row Model — server-side per-column + set filters, row grouping and value aggregations. Credit Orders shipped end-to-end (creditExistingOrder mutation + modal). Items gained COGS, in-grid edit, URL deep-links, and server-resolved Days-to-Pay.'),
       arcCard('RESTOCK', 'Restock: Demand Dashboard + app rebuild', 'The DBR engine went front-to-back: a full Restock Demand Dashboard — URL-persisted filters, selection and sort, CSV export, decayed-score and allocation-reason columns, a Restock Index breakdown — on a hardened calc engine (RCAQ/RCDQ workers, dimensionless slope-factor seasonality, weeks-of-supply overrides, self-healing availability). The legacy Restock app modernized too: WinForms summaries to Razor (WriteOrders, Scenarios, Build Units), with BROS selectors wired into the orders Create Session wizard.'),
