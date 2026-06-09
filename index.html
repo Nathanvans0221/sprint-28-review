@@ -38780,8 +38780,51 @@ function prRow(pr){
   );
 }
 
+const HL_KEY = 's28-highlights';
+let FEATURES_API = null;
+let HL_ONLY = false;
+function loadHL(){ try { return new Set(JSON.parse(localStorage.getItem(HL_KEY) || '[]')); } catch(e){ return new Set(); } }
+const HL = loadHL();
+function saveHL(){ try { localStorage.setItem(HL_KEY, JSON.stringify([...HL])); } catch(e){} }
+function updateHLCount(){ const n = document.getElementById('hl-count'); if (n) n.textContent = '★ ' + HL.size + ' highlighted'; }
+function toggleHLOnly(ev){ HL_ONLY = ev.target.checked; if (FEATURES_API) FEATURES_API.onFilterChanged(); }
+function clearHighlights(){ if (FEATURES_API) FEATURES_API.deselectAll(); HL.clear(); saveHL(); updateHLCount(); if (HL_ONLY && FEATURES_API) FEATURES_API.onFilterChanged(); }
+function copyHighlights(){
+  const items = (DATA.features || []).filter(f => HL.has(f.id));
+  if (!items.length){ alert('No features highlighted yet — tick some checkboxes first.'); return; }
+  const NL = String.fromCharCode(10);
+  const lines = items.map(f => '- [#' + f.id + '] (' + f.product + ') ' + f.title + '  ' + f.url + NL + '      ' + f.desc);
+  const text = 'Sprint 28 highlights to build video reviews for (' + items.length + '):' + NL + NL + lines.join(NL);
+  if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).catch(() => {}); }
+  showCopyModal(text);
+}
+function showCopyModal(text){
+  const old = document.getElementById('hl-modal'); if (old) old.remove();
+  const ta = el('textarea', {style:'width:100%; height:320px; font-family:monospace; font-size:12px; padding:12px; border:1px solid #B3B3B3; border-radius:6px; color:#3F4948; resize:vertical;'});
+  ta.value = text;
+  const overlay = el('div', {id:'hl-modal', style:'position:fixed; inset:0; background:rgba(46,54,53,0.55); z-index:50; display:flex; align-items:center; justify-content:center; padding:24px;'},
+    el('div', {class:'sf-card', style:'background:white; max-width:780px; width:100%; padding:22px;'},
+      el('div', {class:'sf-h3 mb-1'}, 'Your highlight list'),
+      el('div', {class:'text-sm mb-3', style:'color:#557A58;'}, 'Copied to your clipboard. Paste it back to me, or select-all inside the box and copy.'),
+      ta,
+      el('div', {class:'flex justify-end gap-2 mt-3'},
+        el('button', {class:'px-3 py-1.5 rounded text-sm', style:'background:#69936C; color:white; border:none; cursor:pointer; font-weight:600;', onclick:() => { ta.focus(); ta.select(); try { document.execCommand('copy'); } catch(e){} }}, 'Select + copy'),
+        el('button', {class:'px-3 py-1.5 rounded text-sm', style:'background:white; border:1px solid #B3B3B3; cursor:pointer;', onclick:() => { const m = document.getElementById('hl-modal'); if (m) m.remove(); }}, 'Close'))
+    )
+  );
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+  document.body.append(overlay);
+  ta.focus(); ta.select();
+}
 function featuresSection(){
   const feats = DATA.features || [];
+  const toolbar = el('div', {class:'flex flex-wrap items-center gap-3 mb-4'},
+    el('span', {id:'hl-count', class:'chip', style:'background:#557A58;'}, '★ 0 highlighted'),
+    el('button', {class:'px-3 py-1.5 rounded text-sm', style:'background:#69936C; color:white; font-weight:600; border:none; cursor:pointer;', onclick:copyHighlights}, 'Copy highlight list'),
+    el('label', {class:'flex items-center gap-2 text-sm', style:'color:#3F4948; cursor:pointer; user-select:none;'},
+      el('input', {type:'checkbox', id:'hl-only', onchange:toggleHLOnly}), 'Show highlighted only'),
+    el('button', {class:'px-3 py-1.5 rounded text-sm', style:'background:white; color:#BA3636; font-weight:600; border:1px solid #E5E7E5; cursor:pointer;', onclick:clearHighlights}, 'Clear all')
+  );
   const gridContainer = el('div', {
     id: 'features-grid',
     class: 'ag-theme-quartz',
@@ -38791,8 +38834,9 @@ function featuresSection(){
   return el('section', {id:'features', class:'max-w-7xl mx-auto px-6 py-10'},
     el('div', {class:'sf-eyebrow mb-2'}, 'What Shipped'),
     el('h2', {class:'sf-h2 text-3xl mb-2'}, `Features — ${feats.length} shipped`),
-    el('p', {class:'mb-5 max-w-3xl', style:'color:#3F4948; font-weight:300;'},
-      'Every feature merged this sprint, with its description. Filter by product, author, or repo; search the Feature and Description columns.'),
+    el('p', {class:'mb-4 max-w-3xl', style:'color:#3F4948; font-weight:300;'},
+      'Every feature merged this sprint, with its description. Filter and search, then tick the ones worth highlighting — your picks are saved in this browser. Hit Copy highlight list and send it back to build video reviews.'),
+    toolbar,
     el('div', {class:'sf-card overflow-hidden p-1'}, gridContainer)
   );
 }
@@ -38809,17 +38853,21 @@ function mountFeaturesGrid(container, rows){
   const repoCellRenderer = (params) => `<span style="color:#69936C; font-family:monospace; font-size:12px;">${params.value}</span>`;
   const dateCellRenderer = (params) => `<span style="color:#69936C; font-family:monospace; font-size:12px;">${params.value || ''}</span>`;
   const columnDefs = [
-    { headerName: 'Product', field: 'product', width: 128, filter: 'agSetColumnFilter', floatingFilter: true, cellRenderer: productCellRenderer },
-    { headerName: 'Feature', field: 'title', width: 290, filter: 'agTextColumnFilter', floatingFilter: true, wrapText: true, autoHeight: true, cellStyle: {color:'#3F4948', fontWeight:'600', lineHeight:'1.4', paddingTop:'9px', paddingBottom:'9px'} },
-    { headerName: 'Description', field: 'desc', flex: 1, minWidth: 360, filter: 'agTextColumnFilter', floatingFilter: true, wrapText: true, autoHeight: true, cellStyle: {color:'#3F4948', fontWeight:'300', lineHeight:'1.5', paddingTop:'9px', paddingBottom:'9px'} },
-    { headerName: 'Author', field: 'author', width: 150, filter: 'agSetColumnFilter', floatingFilter: true, cellStyle: {color:'#3F4948', fontWeight:'500'} },
-    { headerName: 'Repo', field: 'repo', width: 150, filter: 'agSetColumnFilter', floatingFilter: true, cellRenderer: repoCellRenderer },
-    { headerName: 'Merged', field: 'merged_short', width: 108, sort: 'desc', cellRenderer: dateCellRenderer, filter: 'agTextColumnFilter', floatingFilter: true },
-    { headerName: 'Link', field: 'id', width: 86, cellRenderer: linkCellRenderer, sortable: false, filter: false },
+    { headerName: '★', checkboxSelection: true, headerCheckboxSelection: true, headerCheckboxSelectionFilteredOnly: true, width: 48, pinned: 'left', filter: false, sortable: false, resizable: false, suppressMenu: true, headerTooltip: 'Highlight' },
+    { headerName: 'Product', field: 'product', width: 126, filter: 'agSetColumnFilter', floatingFilter: true, cellRenderer: productCellRenderer },
+    { headerName: 'Feature', field: 'title', width: 280, filter: 'agTextColumnFilter', floatingFilter: true, wrapText: true, autoHeight: true, cellStyle: {color:'#3F4948', fontWeight:'600', lineHeight:'1.4', paddingTop:'9px', paddingBottom:'9px'} },
+    { headerName: 'Description', field: 'desc', flex: 1, minWidth: 340, filter: 'agTextColumnFilter', floatingFilter: true, wrapText: true, autoHeight: true, cellStyle: {color:'#3F4948', fontWeight:'300', lineHeight:'1.5', paddingTop:'9px', paddingBottom:'9px'} },
+    { headerName: 'Author', field: 'author', width: 146, filter: 'agSetColumnFilter', floatingFilter: true, cellStyle: {color:'#3F4948', fontWeight:'500'} },
+    { headerName: 'Repo', field: 'repo', width: 144, filter: 'agSetColumnFilter', floatingFilter: true, cellRenderer: repoCellRenderer },
+    { headerName: 'Merged', field: 'merged_short', width: 104, sort: 'desc', cellRenderer: dateCellRenderer, filter: 'agTextColumnFilter', floatingFilter: true },
+    { headerName: 'Link', field: 'id', width: 84, cellRenderer: linkCellRenderer, sortable: false, filter: false },
   ];
   const gridOptions = {
     columnDefs: columnDefs,
     rowData: rows,
+    rowSelection: 'multiple',
+    suppressRowClickSelection: true,
+    getRowId: (p) => String(p.data.id),
     defaultColDef: { sortable: true, resizable: true },
     headerHeight: 38,
     domLayout: 'normal',
@@ -38827,9 +38875,14 @@ function mountFeaturesGrid(container, rows){
     pagination: true,
     paginationPageSize: 25,
     paginationPageSizeSelector: [25, 50, 100],
+    isExternalFilterPresent: () => HL_ONLY,
+    doesExternalFilterPass: (node) => !HL_ONLY || HL.has(node.data.id),
+    onFirstDataRendered: (e) => { const saved = new Set(HL); e.api.forEachNode(n => { if (saved.has(n.data.id)) n.setSelected(true); }); updateHLCount(); },
+    onSelectionChanged: (e) => { HL.clear(); e.api.getSelectedRows().forEach(r => HL.add(r.id)); saveHL(); updateHLCount(); if (HL_ONLY) e.api.onFilterChanged(); },
   };
-  if (window.agGrid) { window.agGrid.createGrid(container, gridOptions); }
-  else { container.textContent = 'AG Grid failed to load.'; }
+  FEATURES_API = (window.agGrid) ? window.agGrid.createGrid(container, gridOptions) : null;
+  if (!FEATURES_API) { container.textContent = 'AG Grid failed to load.'; }
+  updateHLCount();
 }
 function footer(){
   return el('footer', {class:'mt-12', style:'background:#3F4948; color:white;'},
