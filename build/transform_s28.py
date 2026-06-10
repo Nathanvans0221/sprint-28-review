@@ -9,7 +9,7 @@ merged = raw['completed']
 active = [p for p in raw['active'] if (p.get('created') or '') >= '2026-05-01']  # drop ancient stale
 
 SPRINT_LABEL = "S28"
-SPRINT_WINDOW = "May 20 – Jun 9, 2026"
+SPRINT_WINDOW = "May 20 – Jun 10, 2026"
 NEXT_SPRINT = "Sprint 29"
 
 # ---------- product classification ----------

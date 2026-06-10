@@ -66,21 +66,14 @@ DEMOS_JS = """function demosSection(){
     el('div', {class:'sf-eyebrow mb-2'}, 'The Lineup'),
     el('h2', {class:'sf-h2 text-3xl mb-2'}, 'Demo lineup — what each dev is showing'),
     el('p', {class:'mb-6 max-w-3xl', style:'color:#3F4948; font-weight:300;'},
-      'Demo plans as shared by each dev, with their related S28 PRs attached.'),
+      'Demo plans as shared by each dev.'),
     el('div', {class:'grid md:grid-cols-2 gap-5'},
       ...lineup.map(d => el('div', {class:'sf-card overflow-hidden'},
         el('div', {class:'px-5 py-3', style:'background:#3F4948;'},
           el('div', {class:'sf-h3', style:'color:white;'}, d.dev)
         ),
         el('div', {class:'p-4'},
-          el('p', {class:'text-sm mb-3', style:'color:#3F4948; font-weight:400;'}, d.plan),
-          d.related.length ? el('div', {class:'space-y-1'},
-            ...d.related.map(pr => el('div', {class:'sf-pick-row flex items-center gap-3 px-3 py-1.5 rounded'},
-              el('span', {class:'chip text-xs shrink-0', style:'background:' + (PRODUCT_COLORS[pr.product]||'#6B7280')}, pr.product),
-              el('a', {href:pr.url, target:'_blank', class:'text-sm hover:underline flex-1 truncate', style:'color:#3F4948;'}, pr.title),
-              el('span', {class:'text-xs font-mono shrink-0', style:'color:#69936C;'}, '#' + pr.id)
-            ))
-          ) : el('div', {class:'text-xs italic', style:'color:#B3B3B3;'}, 'Demo spans work outside this sprint\\'s PR set.')
+          el('p', {class:'text-sm', style:'color:#3F4948; font-weight:400;'}, d.plan)
         )
       ))
     ),

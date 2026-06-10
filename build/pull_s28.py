@@ -5,7 +5,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 ORG = "https://dev.azure.com/teamsilverfern/SilverFern"
 WIN_MIN = "2026-05-20T00:00:00Z"
-WIN_MAX = "2026-06-10T00:00:00Z"
+WIN_MAX = "2026-06-11T00:00:00Z"
 TOK = os.popen("az account get-access-token --resource 499b84ac-1321-427f-aa17-267ca6975798 --query accessToken -o tsv 2>/dev/null").read().strip()
 HDR = {"Authorization": "Bearer " + TOK}
 
