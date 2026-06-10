@@ -3,9 +3,9 @@
   "total_prs": 1232,
   "merged": 1180,
   "active": 52,
-  "feat": 784,
-  "fix": 190,
-  "misc": 258,
+  "feat": 757,
+  "fix": 177,
+  "misc": 246,
   "repos_touched": 39,
   "authors_count": 12,
   "sprint_window": "May 20 \u2013 Jun 10, 2026",
@@ -32191,7 +32191,7 @@
    "created_short": "2026-05-05"
   }
  ],
- "generated_at": "2026-06-10T09:37:57.895859",
+ "generated_at": "2026-06-10T09:50:28.885441",
  "demo_lineup": [
   {
    "dev": "Ethan Boss",
@@ -32271,7 +32271,7 @@
   },
   {
    "dev": "Kennedy Kirk",
-   "plan": "Merge.dev (QuickBooks) accounting integration \u2014 doc going to the review chat in the morning.",
+   "plan": "Merge.dev (QuickBooks) accounting integration \u2014 doc going to the review chat in the morning. Plus the trial user flow, end to end.",
    "related": [
     {
      "id": 7936,
@@ -32309,7 +32309,7 @@
   },
   {
    "dev": "Nathan van Wingerden",
-   "plan": "Trial user flow, end to end.",
+   "plan": "Space Planning, and the Orders screen with server-side filtering.",
    "related": [
     {
      "id": 9218,

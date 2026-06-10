@@ -159,7 +159,7 @@ for p in active: enrich(p); p['status']='active'
 all_prs = merged + active
 
 # ---------- metrics ----------
-type_c = Counter(p['type'] for p in all_prs)
+type_c = Counter(p['type'] for p in merged)   # header counts = shipped (merged) only
 metrics = OrderedDict(
     total_prs=len(all_prs), merged=len(merged), active=len(active),
     feat=type_c['feat'], fix=type_c['fix'], misc=type_c['misc'],
