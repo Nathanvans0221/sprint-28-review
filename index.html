@@ -38331,6 +38331,249 @@
    "merged_short": "2026-05-20",
    "work_stream": "DBR-CALC"
   }
+ ],
+ "demo_lineup": [
+  {
+   "dev": "Ethan Boss",
+   "plan": "GrowPoint Integrations flow, starting from an empty tenant.",
+   "related": [
+    {
+     "id": 8678,
+     "title": "Remove GrowPoint integration from worksuite-pwa UI",
+     "repo": "worksuite-pwa",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/worksuite-pwa/pullrequest/8678",
+     "product": "FULFILL",
+     "author": "Kennedy Kirk"
+    },
+    {
+     "id": 8403,
+     "title": "Add GrowPoint Orders validation tab to integration screen",
+     "repo": "worksuite-pwa",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/worksuite-pwa/pullrequest/8403",
+     "product": "FULFILL",
+     "author": "Ethan Boss"
+    },
+    {
+     "id": 9038,
+     "title": "GrowPoint: Items import worker \u2014 commit staged items to event-sourced read model",
+     "repo": "wsapi-services",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi-services/pullrequest/9038",
+     "product": "FULFILL",
+     "author": "Ethan Boss"
+    },
+    {
+     "id": 8938,
+     "title": "feat(growpoint): GrowPoint Customers import worker (commit pass)",
+     "repo": "wsapi-services",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi-services/pullrequest/8938",
+     "product": "FULFILL",
+     "author": "Ethan Boss"
+    }
+   ]
+  },
+  {
+   "dev": "Timothy Short",
+   "plan": "wsapi admin changes for Restock, plus the updates to the Restock Dashboard.",
+   "related": [
+    {
+     "id": 8184,
+     "title": "Add ERP-agnostic restockSessionExportOrders query",
+     "repo": "wsapi",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi/pullrequest/8184",
+     "product": "FULFILL",
+     "author": "Chris Christensen"
+    },
+    {
+     "id": 7882,
+     "title": "Restock dashboard: post-review fixes for StartSessionDialog",
+     "repo": "worksuite-pwa",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/worksuite-pwa/pullrequest/7882",
+     "product": "RESTOCK",
+     "author": "Chris Christensen"
+    },
+    {
+     "id": 7890,
+     "title": "C5b: route session-creation worker through RestockCalcResults",
+     "repo": "wsapi",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi/pullrequest/7890",
+     "product": "RESTOCK",
+     "author": "Chris Christensen"
+    },
+    {
+     "id": 7878,
+     "title": "Restock dashboard: immediate progress modal on session create",
+     "repo": "worksuite-pwa",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/worksuite-pwa/pullrequest/7878",
+     "product": "RESTOCK",
+     "author": "Chris Christensen"
+    }
+   ]
+  },
+  {
+   "dev": "Kennedy Kirk",
+   "plan": "Merge.dev (QuickBooks) accounting integration \u2014 doc going to the review chat in the morning.",
+   "related": [
+    {
+     "id": 8923,
+     "title": "Add mergeDevExports GraphQL query (read outbound exports)",
+     "repo": "wsapi",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi/pullrequest/8923",
+     "product": "FULFILL",
+     "author": "Kennedy Kirk"
+    },
+    {
+     "id": 8826,
+     "title": "feat(mergedev): enforce per-flow EntityMapping.enabled in the import worker",
+     "repo": "wsapi-services",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi-services/pullrequest/8826",
+     "product": "FULFILL",
+     "author": "Kennedy Kirk"
+    },
+    {
+     "id": 8677,
+     "title": "Wire MergeDev import worker to set OneTimePullCompleted",
+     "repo": "wsapi-services",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi-services/pullrequest/8677",
+     "product": "FULFILL",
+     "author": "Kennedy Kirk"
+    },
+    {
+     "id": 8239,
+     "title": "Expose QuickBooks company name via mergeDevConnection query (read side)",
+     "repo": "wsapi",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi/pullrequest/8239",
+     "product": "FULFILL",
+     "author": "Kennedy Kirk"
+    }
+   ]
+  },
+  {
+   "dev": "Nathan van Wingerden",
+   "plan": "Trial user flow, end to end.",
+   "related": [
+    {
+     "id": 9218,
+     "title": "TrialExpiry worker: FusionAuth config via appsettings/IOptions + Key Vault, not WorkerConfig",
+     "repo": "wsapi-services",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi-services/pullrequest/9218",
+     "product": "PLATFORM",
+     "author": "Kennedy Kirk"
+    },
+    {
+     "id": 9219,
+     "title": "Rate-limit the public user-invite GraphQL operations",
+     "repo": "wsapi",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi/pullrequest/9219",
+     "product": "PLATFORM",
+     "author": "Kennedy Kirk"
+    },
+    {
+     "id": 9185,
+     "title": "Register TrialExpiry (70) background service enum + daily seed default",
+     "repo": "wsapi",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi/pullrequest/9185",
+     "product": "PLATFORM",
+     "author": "Kennedy Kirk"
+    },
+    {
+     "id": 9100,
+     "title": "Admin Tenants: trial expiration date \u2014 grid column + set/extend/clear in tenant detail",
+     "repo": "wsapi-admin-pwa",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi-admin-pwa/pullrequest/9100",
+     "product": "PLATFORM",
+     "author": "Kennedy Kirk"
+    }
+   ]
+  },
+  {
+   "dev": "Gabriela Gonzales",
+   "plan": "Kit Builder page (final version) + improvements to code reviews.",
+   "related": [
+    {
+     "id": 7917,
+     "title": "Refactor: Kit Builder Page",
+     "repo": "worksuite-pwa",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/worksuite-pwa/pullrequest/7917",
+     "product": "FULFILL",
+     "author": "Gabriela Gonzales"
+    },
+    {
+     "id": 8211,
+     "title": "Refactor: Move kit-builder page to the corresponding folder structure",
+     "repo": "worksuite-pwa",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/worksuite-pwa/pullrequest/8211",
+     "product": "PLATFORM",
+     "author": "Gabriela Gonzales"
+    }
+   ]
+  },
+  {
+   "dev": "Scott Slattery",
+   "plan": "Customer Portal.",
+   "related": [
+    {
+     "id": 7863,
+     "title": "CPR-01: Critical UX bugs \u2014 dashboard/account/chips/orders",
+     "repo": "worksuite-pwa",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/worksuite-pwa/pullrequest/7863",
+     "product": "FULFILL",
+     "author": "Scott Slattery"
+    },
+    {
+     "id": 9036,
+     "title": "feat(portal): CPR-07 reorder from order history + orders page redesign",
+     "repo": "worksuite-pwa",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/worksuite-pwa/pullrequest/9036",
+     "product": "RESTOCK",
+     "author": "Scott Slattery"
+    },
+    {
+     "id": 9057,
+     "title": "feat(portal): catalog cart quantity \u2014 card stepper + grid in-cart display",
+     "repo": "worksuite-pwa",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/worksuite-pwa/pullrequest/9057",
+     "product": "PLATFORM",
+     "author": "Scott Slattery"
+    },
+    {
+     "id": 8648,
+     "title": "CPR-05b: White-label backend (TenantPortalBranding value object, updateTenantBranding mutation)",
+     "repo": "wsapi",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi/pullrequest/8648",
+     "product": "PLATFORM",
+     "author": "Scott Slattery"
+    }
+   ]
+  },
+  {
+   "dev": "Jared",
+   "plan": "Verify updates: mobile picker flow (site \u2192 orders \u2192 mode selector \u2192 scan carts), then the supervisor dashboard \u2014 sessions \u2192 diff view \u2192 submit \u2192 order moves to Shipped.",
+   "related": [
+    {
+     "id": 8977,
+     "title": "Restock Admin: expandable drill-down for data-validity verify checks",
+     "repo": "wsapi-admin-pwa",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/wsapi-admin-pwa/pullrequest/8977",
+     "product": "PLATFORM",
+     "author": "Timothy Short"
+    },
+    {
+     "id": 8995,
+     "title": "fix(verify): render-phase cursor reset + relocate verify helpers out of pages layer",
+     "repo": "worksuite-pwa",
+     "url": "https://dev.azure.com/teamsilverfern/SilverFern/_git/worksuite-pwa/pullrequest/8995",
+     "product": "PLATFORM",
+     "author": "Kevin Short"
+    }
+   ]
+  }
+ ],
+ "demo_lineup_pending": [
+  "Chris Christensen",
+  "Kevin Short",
+  "Isaac Short",
+  "Hank Williams",
+  "Stephen van Wingerden"
  ]
 }</script>
 
@@ -38391,6 +38634,7 @@ function header(){
         navlink('#all','All PRs'),
         navlink('#active','In Red'),
         navlink('#metrics','Metrics'),
+        navlink('#demos','Demo Lineup'),
         navlink('#reviews','By Developer'),
       )
     )
@@ -38884,6 +39128,35 @@ function mountFeaturesGrid(container, rows){
   if (!FEATURES_API) { container.textContent = 'AG Grid failed to load.'; }
   updateHLCount();
 }
+function demosSection(){
+  const lineup = DATA.demo_lineup || [];
+  const pending = DATA.demo_lineup_pending || [];
+  return el('section', {id:'demos', class:'max-w-7xl mx-auto px-6 py-10'},
+    el('div', {class:'sf-eyebrow mb-2'}, 'The Lineup'),
+    el('h2', {class:'sf-h2 text-3xl mb-2'}, 'Demo lineup — what each dev is showing'),
+    el('p', {class:'mb-6 max-w-3xl', style:'color:#3F4948; font-weight:300;'},
+      'Demo plans as shared by each dev, with their related S28 PRs attached.'),
+    el('div', {class:'grid md:grid-cols-2 gap-5'},
+      ...lineup.map(d => el('div', {class:'sf-card overflow-hidden'},
+        el('div', {class:'px-5 py-3', style:'background:#3F4948;'},
+          el('div', {class:'sf-h3', style:'color:white;'}, d.dev)
+        ),
+        el('div', {class:'p-4'},
+          el('p', {class:'text-sm mb-3', style:'color:#3F4948; font-weight:400;'}, d.plan),
+          d.related.length ? el('div', {class:'space-y-1'},
+            ...d.related.map(pr => el('div', {class:'sf-pick-row flex items-center gap-3 px-3 py-1.5 rounded'},
+              el('span', {class:'chip text-xs shrink-0', style:'background:' + (PRODUCT_COLORS[pr.product]||'#6B7280')}, pr.product),
+              el('a', {href:pr.url, target:'_blank', class:'text-sm hover:underline flex-1 truncate', style:'color:#3F4948;'}, pr.title),
+              el('span', {class:'text-xs font-mono shrink-0', style:'color:#69936C;'}, '#' + pr.id)
+            ))
+          ) : el('div', {class:'text-xs italic', style:'color:#B3B3B3;'}, 'Demo spans work outside this sprint\'s PR set.')
+        )
+      ))
+    ),
+    pending.length ? el('p', {class:'mt-5 text-sm italic', style:'color:#B3B3B3;'},
+      'Plans not shared yet: ' + pending.join(' · ')) : null
+  );
+}
 function footer(){
   return el('footer', {class:'mt-12', style:'background:#3F4948; color:white;'},
     el('div', {class:'max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-between items-center gap-4'},
@@ -38906,6 +39179,7 @@ root.append(
   allPrsSection(),
   activeSection(),
   metricsSection(),
+  demosSection(),
   reviewsSection(),
   footer(),
 );
